@@ -29,7 +29,7 @@ def read_alarms_file(alarms_file_path):
         # Use the first sheet
         first_sheet = next(iter(all_sheets.values()))
         
-        if first_sheet.empty:
+        if (first_sheet.empty):
             return {}
         
         alarms_dict = {}
@@ -95,7 +95,7 @@ def determinar_analisis(row, last_two_days):
         if status == 'OBSERVADO':
             return 'RUTA RECOMENDADA'
         if status == 'INCIDENCIA':
-            return ''  # Skipped as per instructions
+            return 'NO ENVIADO'  # Skipped as per instructions
 
     # Priority 2: Based on Reading Data
     total_readings = row.get('Total Readings', 0)
@@ -126,7 +126,7 @@ def determinar_analisis(row, last_two_days):
                 return 'AVISO'
 
     # Default case if no other condition is met
-    return ''
+    return 'NO ENVIADO'
 
 def main():
     """
